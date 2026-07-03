@@ -15,7 +15,7 @@ const FLAT_PCT_RE = /^([\d.]+)%\s*of\s*(?:the\s*)?(?:dutiable|total)\s*value/i;
 export async function scrapeGenericMarginalPage(state: AustralianState, url: string): Promise<DutyBracket[]> {
   const res = await fetch(url, {
     headers: { 'User-Agent': 'Mozilla/5.0 (rent-vs-buy-calculator rate sync)' },
-    signal: AbortSignal.timeout(10000),
+    signal: AbortSignal.timeout(8000),
   });
   if (!res.ok) throw new Error(`${state} scrape failed: HTTP ${res.status}`);
   const html = await res.text();

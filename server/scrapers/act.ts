@@ -51,7 +51,7 @@ function parseRateCell(rangeText: string, rateText: string): DutyBracket | null 
 async function scrape(): Promise<DutyBracket[]> {
   const res = await fetch(SOURCE_URLS.ACT, {
     headers: { 'User-Agent': 'Mozilla/5.0 (rent-vs-buy-calculator rate sync)' },
-    signal: AbortSignal.timeout(10000),
+    signal: AbortSignal.timeout(8000),
   });
   if (!res.ok) throw new Error(`ACT scrape failed: HTTP ${res.status}`);
   const html = await res.text();

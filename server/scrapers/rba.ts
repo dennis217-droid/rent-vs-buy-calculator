@@ -11,7 +11,7 @@ const TARGET_SERIES_ID = 'FILRHLBVD';
 export async function scrapeMortgageRate(): Promise<number> {
   const res = await fetch(MORTGAGE_RATE_SOURCE_URL, {
     headers: { 'User-Agent': 'Mozilla/5.0 (rent-vs-buy-calculator rate sync)' },
-    signal: AbortSignal.timeout(10000),
+    signal: AbortSignal.timeout(8000),
   });
   if (!res.ok) throw new Error(`RBA scrape failed: HTTP ${res.status}`);
   const csv = await res.text();
