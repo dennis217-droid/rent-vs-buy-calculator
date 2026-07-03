@@ -51,7 +51,8 @@ const inputBaseClass =
   'w-full flex-1 rounded-md border-0 bg-transparent py-1.5 px-2.5 text-sm text-slate-100 focus:outline-none [color-scheme:dark]';
 const fieldShellClass =
   'mt-1 flex h-9 items-center rounded-md border border-slate-700 bg-slate-800 transition-colors focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-400/20';
-const labelClass = 'text-[11px] font-semibold uppercase tracking-wide text-slate-500';
+const labelClass =
+  'flex min-h-[28px] items-end text-[11px] font-semibold uppercase leading-tight tracking-wide text-slate-500';
 const groupLabelClass = 'text-[11px] font-semibold uppercase tracking-wide text-slate-500';
 
 interface NumberFieldProps {
@@ -99,7 +100,7 @@ function SectionCard({
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-800 text-slate-300">
           {icon}
         </div>
-        <h3 className="text-base font-semibold text-white">{title}</h3>
+        <h2 className="text-base font-semibold text-white">{title}</h2>
       </div>
       {children}
     </section>
@@ -145,7 +146,37 @@ const ICONS = {
       <rect x="3" y="16" width="7" height="5" rx="1" />
     </svg>
   ),
+  faq: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-2.5 3" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 17h.01" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
 };
+
+const FAQ_ITEMS = [
+  {
+    question: 'How does this rent vs buy calculator work?',
+    answer:
+      "It models two scenarios over the same time horizon: buying a property with a mortgage (accounting for stamp duty, LMI, maintenance, council rates and selling costs), and renting while investing the deposit plus the ongoing difference between mortgage and rental costs. It then compares the final net wealth of each scenario.",
+  },
+  {
+    question: 'Where does the stamp duty data come from?',
+    answer:
+      "Stamp duty rates are fetched live from each state revenue office's published rate page (NSW, VIC, QLD, WA, SA and ACT). If a live fetch fails, the calculator falls back to the most recent successfully fetched value, or a built-in indicative rate.",
+  },
+  {
+    question: 'Where does the mortgage rate come from?',
+    answer:
+      "The default mortgage rate is the Reserve Bank of Australia's published average discounted owner-occupier variable rate, updated monthly. It can be edited to model any rate.",
+  },
+  {
+    question: 'Is this financial advice?',
+    answer:
+      'No. This calculator provides indicative estimates for educational purposes only, based on user-supplied assumptions about property growth, rent growth and investment returns. It is not financial advice and does not account for individual circumstances, taxes, or concessions such as first home buyer schemes.',
+  },
+];
 
 export default function Calculator() {
   const [inputs, setInputs] = useState<CalculatorInputs>(DEFAULT_INPUTS);
@@ -312,9 +343,9 @@ export default function Calculator() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-800 text-slate-300">
             {ICONS.info}
           </div>
-          <h3 className="text-base font-semibold text-white">
+          <h2 className="text-base font-semibold text-white">
             Assumptions baked into this calculator
-          </h3>
+          </h2>
         </div>
         <svg
           viewBox="0 0 24 24"
@@ -423,6 +454,35 @@ export default function Calculator() {
             monthly.
           </li>
         </ul>
+      </div>
+    </details>
+
+    <details className="group rounded-2xl border border-slate-800 bg-slate-900 shadow-sm shadow-black/20">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-6">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-800 text-slate-300">
+            {ICONS.faq}
+          </div>
+          <h2 className="text-base font-semibold text-white">Frequently asked questions</h2>
+        </div>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="h-4 w-4 shrink-0 text-slate-500 transition-transform group-open:rotate-180"
+        >
+          <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </summary>
+
+      <div className="space-y-4 px-6 pb-6">
+        {FAQ_ITEMS.map((item) => (
+          <div key={item.question}>
+            <h3 className="text-sm font-semibold text-slate-200">{item.question}</h3>
+            <p className="mt-1 text-sm leading-relaxed text-slate-400">{item.answer}</p>
+          </div>
+        ))}
       </div>
     </details>
   </div>

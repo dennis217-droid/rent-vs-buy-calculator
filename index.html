@@ -1,13 +1,136 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rent vs Buy Calculator</title>
+
+    <title>Rent vs Buy Calculator Australia | Compare Net Wealth with Live Stamp Duty &amp; Mortgage Rates</title>
+    <meta
+      name="description"
+      content="Free Australian rent vs buy calculator. Compares long-term net wealth from buying a home versus renting and investing the difference, using live stamp duty rates scraped from NSW, VIC, QLD, WA, SA and ACT revenue offices, the current RBA mortgage rate, and LMI. Includes a full year-by-year net wealth chart and cost breakdown."
+    />
+    <meta
+      name="keywords"
+      content="rent vs buy calculator, rent vs buy australia, stamp duty calculator, should I rent or buy, buy vs rent calculator, LMI calculator, mortgage vs rent calculator, NSW stamp duty, VIC stamp duty, QLD stamp duty"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="en-AU" />
+    <meta name="geo.region" content="AU" />
+    <meta name="geo.placename" content="Australia" />
+    <!-- TODO: replace with the real production URL once deployed -->
+    <link rel="canonical" href="https://your-production-domain.example/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rent vs Buy Calculator" />
+    <meta property="og:locale" content="en_AU" />
+    <meta
+      property="og:title"
+      content="Rent vs Buy Calculator Australia | Compare Net Wealth with Live Stamp Duty &amp; Mortgage Rates"
+    />
+    <meta
+      property="og:description"
+      content="Compare long-term net wealth from buying vs renting and investing in Australia, with live stamp duty rates, current RBA mortgage rates, and LMI built in."
+    />
+    <meta property="og:url" content="https://your-production-domain.example/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Rent vs Buy Calculator Australia | Compare Net Wealth with Live Stamp Duty &amp; Mortgage Rates"
+    />
+    <meta
+      name="twitter:description"
+      content="Compare long-term net wealth from buying vs renting and investing in Australia, with live stamp duty rates, current RBA mortgage rates, and LMI built in."
+    />
+
+    <!-- Structured data: what this tool is, for search engines and AI answer engines -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Rent vs Buy Calculator",
+        "alternateName": "Australian Rent vs Buy Calculator",
+        "url": "https://your-production-domain.example/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any (web browser)",
+        "description": "Compares the long-term net wealth outcome of buying a home versus renting and investing the difference in Australia. Uses live stamp duty rates for NSW, VIC, QLD, WA, SA and ACT sourced from each state revenue office, the current RBA average mortgage rate, and estimated Lenders Mortgage Insurance (LMI), to project net wealth for both scenarios over a user-defined time horizon.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "AUD"
+        },
+        "featureList": [
+          "Live stamp duty rates for NSW, VIC, QLD, WA, SA and ACT",
+          "Live RBA average mortgage rate",
+          "Lenders Mortgage Insurance (LMI) estimate",
+          "Year-by-year net wealth chart",
+          "Detailed cost breakdown for both scenarios"
+        ],
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does this rent vs buy calculator work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It models two scenarios over the same time horizon: buying a property with a mortgage (accounting for stamp duty, LMI, maintenance, council rates and selling costs), and renting while investing the deposit plus the ongoing difference between mortgage and rental costs. It then compares the final net wealth of each scenario."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where does the stamp duty data come from?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Stamp duty rates are fetched live from each state revenue office's published rate page (NSW, VIC, QLD, WA, SA and ACT). If a live fetch fails, the calculator falls back to the most recent successfully fetched value, or a built-in indicative rate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where does the mortgage rate come from?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The default mortgage rate is the Reserve Bank of Australia's published average discounted owner-occupier variable rate, updated monthly. It can be edited to model any rate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this financial advice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. This calculator provides indicative estimates for educational purposes only, based on user-supplied assumptions about property growth, rent growth and investment returns. It is not financial advice and does not account for individual circumstances, taxes, or concessions such as first home buyer schemes."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width: 640px; margin: 40px auto; padding: 0 20px; font-family: system-ui, sans-serif; color: #1e293b;">
+        <h1>Rent vs Buy Calculator (Australia)</h1>
+        <p>
+          This free calculator compares the long-term net wealth outcome of buying a home versus
+          renting and investing the difference in Australia. It uses live stamp duty rates for
+          NSW, VIC, QLD, WA, SA and ACT, the current RBA average mortgage rate, and an estimated
+          Lenders Mortgage Insurance (LMI) premium, to project net wealth for both scenarios over
+          a chosen time horizon, with a year-by-year chart and full cost breakdown.
+        </p>
+        <p>This app requires JavaScript to run the interactive calculator. Please enable JavaScript in your browser.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

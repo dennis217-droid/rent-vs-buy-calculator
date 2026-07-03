@@ -1,0 +1,30 @@
+# Standard crawlers
+User-agent: *
+Allow: /
+
+# AI / generative-engine crawlers — explicitly allowed so this tool can be
+# summarized and cited by AI answer engines (ChatGPT, Perplexity, Google AI
+# Overviews, Claude, etc.)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# TODO: once deployed, replace with the real production URL and uncomment:
+# Sitemap: https://your-production-domain.example/sitemap.xml
