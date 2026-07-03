@@ -292,6 +292,10 @@ export default function Calculator() {
             </div>
           </div>
         </SectionCard>
+
+        <SectionCard icon={ICONS.breakdown} title="Detailed Breakdown">
+          <NetWealthBreakdown buy={result.buyBreakdown} rent={result.rentBreakdown} years={inputs.years} />
+        </SectionCard>
       </div>
 
       <div className="space-y-6 lg:sticky lg:top-6 lg:self-start">
@@ -301,10 +305,6 @@ export default function Calculator() {
         </SectionCard>
       </div>
     </div>
-
-    <SectionCard icon={ICONS.breakdown} title="Detailed Breakdown">
-      <NetWealthBreakdown buy={result.buyBreakdown} rent={result.rentBreakdown} years={inputs.years} />
-    </SectionCard>
 
     <details className="group rounded-2xl border border-slate-800 bg-slate-900 shadow-sm shadow-black/20">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-6">
