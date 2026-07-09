@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { AustralianState, CalculatorInputs, RatesState } from '../lib/calculator';
 import { ASSUMPTIONS, FALLBACK_STAMP_DUTY_BRACKETS, runCalculation } from '../lib/calculator';
 import { fetchRates } from '../lib/ratesApi';
+import { hasShareParams, searchParamsToInputs } from '../lib/shareState';
 import VerdictCard from './VerdictCard';
 import ResultsChart from './ResultsChart';
 import NetWealthBreakdown from './NetWealthBreakdown';
@@ -178,10 +179,21 @@ const FAQ_ITEMS = [
   },
 ];
 
-export default function Calculator() {
-  const [inputs, setInputs] = useState<CalculatorInputs>(DEFAULT_INPUTS);
+interface CalculatorProps {
+  initialState?: AustralianState;
+}
+
+export default function Calculator({ initialState }: CalculatorProps = {}) {
+  const [inputs, setInputs] = useState<CalculatorInputs>(() => {
+    const base = initialState ? { ...DEFAULT_INPUTS, state: initialState } : DEFAULT_INPUTS;
+    if (typeof window === 'undefined') return base;
+    const params = new URLSearchParams(window.location.search);
+    return hasShareParams(params) ? searchParamsToInputs(params, base) : base;
+  });
   const [ratesStatus, setRatesStatus] = useState<RatesStatus>({ kind: 'loading' });
-  const [mortgageRateTouched, setMortgageRateTouched] = useState(false);
+  const [mortgageRateTouched, setMortgageRateTouched] = useState(
+    () => typeof window !== 'undefined' && hasShareParams(new URLSearchParams(window.location.search)),
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -330,7 +342,7 @@ export default function Calculator() {
       </div>
 
       <div className="space-y-6 lg:sticky lg:top-6 lg:self-start">
-        <VerdictCard result={result} years={inputs.years} />
+        <VerdictCard result={result} years={inputs.years} inputs={inputs} />
         <SectionCard icon={ICONS.chart} title="Net Wealth Over Time">
           <ResultsChart timeline={result.timeline} />
         </SectionCard>

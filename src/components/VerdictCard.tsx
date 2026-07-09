@@ -1,12 +1,14 @@
-import type { CalculationResult } from '../lib/calculator';
+import type { CalculationResult, CalculatorInputs } from '../lib/calculator';
 import { formatCurrency } from '../lib/calculator';
+import ShareButton from './ShareButton';
 
 interface VerdictCardProps {
   result: CalculationResult;
   years: number;
+  inputs: CalculatorInputs;
 }
 
-export default function VerdictCard({ result, years }: VerdictCardProps) {
+export default function VerdictCard({ result, years, inputs }: VerdictCardProps) {
   const isBuy = result.verdict === 'buy';
   const accent = isBuy
     ? { bar: 'bg-indigo-500', pill: 'bg-indigo-500/10 text-indigo-400 ring-indigo-400/20', text: 'text-indigo-400' }
@@ -16,12 +18,13 @@ export default function VerdictCard({ result, years }: VerdictCardProps) {
     <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-sm shadow-black/20">
       <div className={`h-1.5 w-full ${accent.bar}`} />
       <div className="p-6">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <span
             className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset ${accent.pill}`}
           >
             After {years} years
           </span>
+          <ShareButton inputs={inputs} result={result} />
         </div>
         <h2 className="mt-3 text-2xl font-bold tracking-tight text-white">
           {isBuy ? 'Buying' : 'Renting & Investing'} comes out ahead
